@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Map - Dijkstra Visualization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dijkstra's Algorithm Visualization</h1>
+            <p class="subtitle">Explore the shortest path between nodes in a virtual city using Dijkstra's algorithm</p>
+        </header>
+
+        <div class="card">
+            <div class="canvas-container">
+                <canvas id="cityMap"></canvas>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color node-normal"></div>
+                    <span>Node</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color node-start"></div>
+                    <span>Start Node</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color node-end"></div>
+                    <span>End Node</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color edge-normal"></div>
+                    <span>Edge</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color edge-path"></div>
+                    <span>Shortest Path</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <form id="shortestPathForm" class="form-container">
+                <h2>Find Shortest Path</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="start">Start Node:</label>
+                        <input type="number" id="start" name="start" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end">End Node:</label>
+                        <input type="number" id="end" name="end" min="0" required>
+                    </div>
+                </div>
+                <button type="submit">Calculate Shortest Path</button>
+            </form>
+        </div>
+
+        <div id="resultCard" class="card" style="display: none;">
+            <h2>Shortest Path Result</h2>
+            <div id="pathResult" class="path-result"></div>
+            <div id="pathDistance" class="path-result"></div>
+            <div class="algorithm-info">
+                <h3>About Dijkstra's Algorithm</h3>
+                <p>Dijkstra's algorithm is a greedy algorithm that solves the single-source shortest path problem for a directed graph with non-negative edge weights, producing a shortest-path tree.</p>
+            </div>
+        </div>
+
+        <p class="info-text">Click on nodes in the map to select start and end points</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+
